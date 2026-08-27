@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "featdistill-infer"
+version = "1.0.0"
+description = "Inference-only four-expert ensemble for robust AI-generated image detection"
+readme = "README.md"
+requires-python = ">=3.10"
+dynamic = ["dependencies"]
+
+[project.scripts]
+featdistill-infer = "infer.cli:main"
+
+[project.optional-dependencies]
+distortion = [
+  "numpy==2.2.5",
+  "scipy==1.15.3",
+  "kornia==0.8.2",
+]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["infer*", "distortion*"]
